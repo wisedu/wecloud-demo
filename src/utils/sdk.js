@@ -1,6 +1,8 @@
 /**
  * bh-mobile-sdk encapsulate
  */
+import {init as sdkInit} from 'bh-mobile-sdk'
+
 export const BASE_PATH = location.protocol + '//' + location.host + location.pathname
 
 let tenantCode = null
@@ -10,6 +12,17 @@ let tenantId = null
 export const runWithSdk = (() => {
   return !!~navigator.userAgent.indexOf('wisedu')
 })()
+
+/**
+ * init method
+ */
+export const init = () => {
+  return new Promise(resolve => {
+    sdkInit(() => {
+      resolve(BH_MOBILE_SDK)
+    })
+  })
+}
 
 /**
  * get current tenant code like 'wiseduys'
